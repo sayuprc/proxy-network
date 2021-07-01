@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  proxy:
+    build: ./infra/nginx
+    image: proxy_network
+    container_name: proxy_network
+    privileged: true
+    environment:
+      TZ: 'Asia/Tokyo'
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - ./vhost.d:/etc/nginx/vhost.d
+    networks:
+      - proxy-network
+    restart: always
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '3m'
+        max-file: '1'
+
+networks:
+  proxy-network:
+    name: proxy-network

@@ -1,3 +1,0 @@
-certs/*.key
-certs/*.crt
-vhost.d/*.localhost

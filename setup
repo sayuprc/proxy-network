@@ -1,8 +1,0 @@
-#!/bin/bash
-
-ROOT=`cd $(dirname $0); pwd`
-
-keyFile="${ROOT}/certs/localhost.key"
-crtFile="${ROOT}/certs/localhost.crt"
-
-openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout "${keyFile}" -out "${crtFile}" -subj "/CN=*.localhost" -days 3650
